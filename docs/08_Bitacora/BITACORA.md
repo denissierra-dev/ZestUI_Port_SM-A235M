@@ -102,6 +102,29 @@ Detalle del antes/después en `../02_Vector_A_fstab/README.md`.
 
 ---
 
+## Fase 6 — Auditoría del ROM y corrección de la documentación
+
+| # | Acción | Resultado |
+|---|---|---|
+| 6.1 | Inspección de la USB tras la reconexión | Aparece `CustomRoom_85_forGalaxiA23/` con el **directorio de trabajo real** del port |
+| 6.2 | Lectura de `build_info.txt` | `version=4.9.2`, `security_patch_version=2026-08` → **One UI 8.5 / Android 16** (no 6.1) |
+| 6.3 | Lectura de `dynamic_partitions_op_list` | `resize vendor 922710016` coincide con el `vendor.img` del port → es el vendor de ZestUI |
+| 6.4 | Comparación del fstab subido con `ramdisk_F/fstab.default` | **Idénticos** (salvo tabs/espacios) → el fichero YA era el first-stage |
+| 6.5 | Búsqueda de `netbpfload` en `vendor.img` (F2FS) | **0 hits**. Los 2 `reboot_on_failure` son de `boringssl_self_test` |
+| 6.6 | **Conclusión** | `netbpfload` está en **`system`** (`/system/etc/init/hw/init.rc`), no en `vendor` → hay que extraer `system.new.dat.br` |
+| 6.7 | Corrección de la versión de One UI en toda la documentación | 6 ficheros actualizados (decía 6.1 / Android 14) |
+| 6.8 | Nuevo documento | `00_Overview/03_METADATOS_ROM_Y_ESTRUCTURA.md` |
+
+### Corrección conceptual importante
+
+El error de fondo del port **no es un bug de la adaptación**, es un
+**desajuste de generación de kernel**: la cadena de herramientas de Android 16
+asume kernel ≥ 5.4 (eBPF) y el A23 monta 4.19. Por eso los symptoms son
+"raros" (reinicio por `netbpfload`, denegaciones SELinux en cascada) y no
+errores de empaquetado convencionales.
+
+---
+
 ## Errores y trampas encontrados (para no repetirlos)
 
 | Trampa | Detalle | Solución aplicada |

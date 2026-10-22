@@ -8,7 +8,7 @@
 | **Destino** | Samsung Galaxy A23 **SM-A235M** | Snapdragon 680 (SM6225), UFS 2.2 |
 | **Kernel** | `SRPUL29A015` | 4.19.151-perf, rama 4.19 |
 | **Bootloader** | `BL_A235MUBSFEZB1_...REV00_user_low_ship_MULTI_CERT` | Vencido con `magiskboot` |
-| **Base de la ROM** | ZestUI 4.2.9 `SM-A235F-S911BXXSAFZH3` | One UI 6.1 / Android 14 |
+| **Base de la ROM** | ZestUI 4.2.9 `SM-A235F-S911BXXSAFZH3` | One UI 8.5 / Android 16 |
 
 ## Host de trabajo
 

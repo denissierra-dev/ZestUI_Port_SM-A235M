@@ -1,6 +1,6 @@
 # ZestUI → SM-A235M (Snapdragon 680) — Documentación del puerto
 
-Puerto de la ROM **ZestUI 4.2.9** (basada en One UI 6.1 / Android 14) del
+Puerto de la ROM **ZestUI 4.2.9** (basada en One UI 8.5 / Android 16) del
 Samsung Galaxy **A23 SM-A235F** a la variante **SM-A235M** (SoC Snapdragon 680
 / SM6225, UFS 2.2).
 

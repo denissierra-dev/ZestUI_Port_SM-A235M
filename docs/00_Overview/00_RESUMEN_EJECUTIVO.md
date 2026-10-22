@@ -2,7 +2,7 @@
 
 ## El problema
 
-Portar ZestUI 4.2.9 (One UI 6.1 / Android 14) de **SM-A235F** a **SM-A235M**
+Portar ZestUI 4.2.9 (One UI 8.5 / Android 16) de **SM-A235F** a **SM-A235M**
 (Snapdragon 680, UFS 2.2). El bootloader está vencido y el kernel arranca, pero
 el sistema **colapsa dos veces** durante el arranque:
 

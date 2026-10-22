@@ -63,13 +63,25 @@ texto_parcheado = patch_fstab(texto_original)
 
 | Fichero | Partición | Momento | Estado |
 |---|---|---|---|
-| `vendor/etc/fstab.*` | `vendor` | montajes tardíos | ✅ parcheado |
-| `fstab.default` (ramdisk) | `boot` (ramdisk) | **primera etapa** | ⏳ **por aplicar** |
+| `fstab.default` (ramdisk) | `boot` (ramdisk) | **primera etapa** | ✅ **parcheado** |
+
+> **Corrección (verificada)**: el fichero `fstab_vendor.txt` que se subió para
+> este vector **es** el `ramdisk_F/fstab.default` del port — el fstab de
+> **primera etapa**, el que realmente monta `/data`. Se confirmó byte a byte
+> (mismo contenido, el fichero subido usa tabuladores y el del dispositivo
+> espacios). No hace falta un fstab adicional en `vendor/etc` para este ROM.
 
 El fstab first-stage es el que monta `/data` antes de que arranque `vold`, y
 también lleva `inlinecrypt` + `fileencryption` + `keydirectory`. Si no se
 parchea, FBE sigue activo (ver `security.fbe.fail_cause = K00B` y el
 `dm-49` en el log).
+
+Para **referencia**, el fstab first-stage del **A235M stock** (extraído de su
+`boot.img`, build `SRPUL29A015`) es equivalente salvo por la ruta del
+dispositivo (`/dev/block/bootdevice/...` en vez de
+`/dev/block/platform/soc/4804000.ufshc/...`) y por un `check,,fileencryption=`
+con doble coma heredado del stock. Está en
+`../07_Extraidos_STOCK_A235M/boot_ramdisk/fstab.default`.
 
 ### Cómo reconstruir el ramdisk
 
