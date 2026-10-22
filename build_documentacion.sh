@@ -99,6 +99,15 @@ echo "==> 3/5 copiando herramientas"
 for t in fstab_patcher.py elf_patcher.py annotate_asm.py parse_bootimg.py requirements.txt; do
     [[ -f "$SCRIPT_DIR/$t" ]] && cp "$t" "$BUILD_DIR/" || echo "    [!] falta $t" >&2
 done
+
+# Cada herramienta se copia TAMBIEN junto a la documentacion de su vector,
+# para que el arbol sea autocontenido y legible sin conocer el repo.
+[[ -f "$SCRIPT_DIR/fstab_patcher.py" ]] && cp "$SCRIPT_DIR/fstab_patcher.py" \
+    "$BUILD_DIR/02_Vector_A_fstab/"
+[[ -f "$SCRIPT_DIR/elf_patcher.py" ]] && cp "$SCRIPT_DIR/elf_patcher.py" \
+    "$BUILD_DIR/03_Vector_B_ELF/"
+[[ -f "$SCRIPT_DIR/annotate_asm.py" ]] && cp "$SCRIPT_DIR/annotate_asm.py" \
+    "$BUILD_DIR/05_Assembly_ARM64/"
 [[ -f "$SCRIPT_DIR/patch_init_rc_netbpfload.sh" ]] && \
     cp "$SCRIPT_DIR/patch_init_rc_netbpfload.sh" "$BUILD_DIR/04_Vector_C_netbpfload/"
 
