@@ -366,8 +366,26 @@ def annotate(instrs, syms, consts, out):
     dispatch_cmp_addrs = {c for (_br, _add, c, _reg) in dispatches if c is not None}
     dispatch_br_addrs = {br for (br, _add, _c, _reg) in dispatches}
     dispatch_bias_addrs = {a for (_br, a, _c, _reg) in dispatches}
-    # registros usados como bias en cada dispatch
     bias_reg_by_add = {a: reg for (_br, a, _c, reg) in dispatches}
+
+    # El registro del bias (w9 ttypically) se REUTILIZA en el compilador para
+    # cargar los tags que luego se comparan. Por eso no vale con saber que
+    # un registro es "el del bias": hay que identificar la construccion
+    # movz/movk CONCRETA que alimenta el 'add' del bias, es decir, la mas
+    # cercana por debajo de ese 'add'.
+    bias_const_addrs = set()
+    for (_br, bias_add, _c, bias_reg) in dispatches:
+        best = None
+        best_movk = -1
+        for addr, (value, movks, creg) in consts.items():
+            if creg != bias_reg:
+                continue
+            for mk in movks:
+                if mk.address < bias_add and mk.address > best_movk:
+                    best_movk = mk.address
+                    best = addr
+        if best is not None:
+            bias_const_addrs.add(best)
 
     for ins in instrs:
         raw = bytes(ins.bytes)
@@ -403,12 +421,8 @@ def annotate(instrs, syms, consts, out):
             if tname_known:
                 desc += f" = {tname_known}"
             desc += f"  [tipo={tname}, id=0x{tag_id:x}]"
-            # Si la constante alimenta el bias de un switch, NO es un tag.
-            is_bias = False
-            for (_br, bias_add, _c, bias_reg) in dispatches:
-                if bias_reg == creg:
-                    is_bias = True
-                    break
+            # Si la constante ES el bias del switch, NO es un tag.
+            is_bias = ins.address in bias_const_addrs
             if is_bias:
                 desc += "  <-- BIAS de tabla de switch (NO es un tag de Keymaster)"
             elif is_vendor_tag(value):
