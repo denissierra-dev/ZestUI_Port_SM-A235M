@@ -1,0 +1,6 @@
+# Dependencias del entorno de reversing del puerto ZestUI -> SM-A235M
+# Instalación:  pip3 install -r requirements.txt
+lief==1.0.0
+capstone==5.0.7
+keystone-engine==0.9.2
+hexdump==3.3

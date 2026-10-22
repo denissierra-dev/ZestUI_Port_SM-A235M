@@ -1,0 +1,22 @@
+# Artefactos generados por build_documentacion.sh (se reconstruyen)
+build/
+
+# Binarios y artefactos grandes de terceros (no se versionan)
+*.so
+*.img
+*.ko
+*.cpio
+boot_ramdisk/kernel.img
+boot_ramdisk/init
+boot_ramdisk/dpolicy
+
+# Logs de pstore (binarios, se regeneran del dispositivo)
+01_Logs_Boot/raw/pmsg-ramoops-0
+01_Logs_Boot/raw/console-ramoops-0
+
+# Backups de parches
+*.bak
+
+# Python
+__pycache__/
+*.pyc
