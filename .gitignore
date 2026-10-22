@@ -1,22 +1,27 @@
-# Artefactos generados por build_documentacion.sh (se reconstruyen)
-build/
+# Git ignore for ZestUI Port Documentation
+# Previene la subida accidental de binarios propietarios o imagenes pesadas a GitHub
 
-# Binarios y artefactos grandes de terceros (no se versionan)
-*.so
+# Binarios propietarios y blobs de firmware
 *.img
-*.ko
-*.cpio
-boot_ramdisk/kernel.img
-boot_ramdisk/init
-boot_ramdisk/dpolicy
+*.bin
+*.lz4
+*.tar
+*.tar.md5
+*.zip
+*.so
+*.dat
+*.dat.br
 
-# Logs de pstore (binarios, se regeneran del dispositivo)
-01_Logs_Boot/raw/pmsg-ramoops-0
-01_Logs_Boot/raw/console-ramoops-0
+# Blobs extraídos del stock
+07_Extraidos_STOCK_A235M/boot_ramdisk/kernel.img
+07_Extraidos_STOCK_A235M/boot_ramdisk/init
+07_Extraidos_STOCK_A235M/boot_ramdisk/dpolicy
+03_Vector_B_ELF/raw/libkm_compat.so
 
-# Backups de parches
-*.bak
-
-# Python
+# Python y temporales
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.swp
+*~
+.DS_Store
