@@ -27,6 +27,18 @@ documental del puerto.
 └── requirements.txt
 ```
 
+## Licencia
+
+| Capa | Licencia |
+|---|---|
+| Scripts y herramientas (`*.py`, `*.sh`) | **MIT** — ver [`LICENSE`](LICENSE) |
+| Documentación (`docs/**/*.md`) | **CC BY-SA 4.0** |
+| Material de terceros (AOSP, Samsung, ZestUI) | **sus licencias originales** — ver [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) |
+
+> Los binarios propietarios (boot/kernel/vendor/odm de Samsung y el room
+> ZestUI) están **excluidos del repositorio** por `.gitignore` y no se
+> relicencian. El port del room es una obra derivada GPL-2.0.
+
 ## Uso
 
 ```bash

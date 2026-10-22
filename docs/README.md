@@ -87,9 +87,18 @@ SRC_STOCK=/ruta/a/stock_a235m \
 
 ---
 
-## Licencia y aviso
+## Licencia
+
+| Capa | Licencia |
+|---|---|
+| Scripts y herramientas (`*.py`, `*.sh`) | **MIT** |
+| Documentación (`*.md`) | **CC BY-SA 4.0** |
+| Material de terceros (AOSP, Samsung, ZestUI) | **sus licencias originales** |
+
+Los binarios analizados (`libkm_compat.so`, `boot.img`, `kernel.img`, `init`)
+pertenecen a distribuciones AOSP/Samsung bajo sus respectivas licencias
+(Apache-2.0 para AOSP, GPL-2.0 y propietario para los componentes Samsung).
+**No se relicencian**: ver `THIRD_PARTY_NOTICES.md` en la raíz del repositorio.
 
 Trabajo de ingeniería inversa sobre dispositivos de la propia autoría del
-autor, con fines personales. Los binarios analizados (`libkm_compat.so`,
-`boot.img`) pertenecen a distribuciones AOSP/Samsung bajo sus respectivas
-licencias (Apache-2.0 para AOSP, GPL para componentes Samsung).
+autor, con fines personales.
